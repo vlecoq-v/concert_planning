@@ -15,6 +15,9 @@ def find_sum(target_sum: int, int_list: list[int]) -> Union[list[int], None]:
 
     int_list.sort()
 
+    # compare first element with two others (first + 1 and last element)
+    # as list is sorted our second and third element will converge to a pertinent value or reach each other
+    # if so no sum was found and the second element becomes the basis of our triplet
     for first in range(0, int_list_size - 2):
         second = first + 1
         third = int_list_size - 1
