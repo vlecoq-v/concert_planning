@@ -2,19 +2,29 @@ import argparse
 import logging
 import typing
 
+if __name__ != "__main__":
+    exit()
+
 parser = argparse.ArgumentParser(
-    description="""program description"""
+    description="""This script determines wether a set of 3 tracks from the track_list argument can be used as a
+    preshow with intended premiere_length length."""
 )
 
 parser.add_argument(
     "-l",
-    "--length",
-    help="Concert Premiere intended Length",
+    "--premiere_length",
+    help="Concert Premiere intended Length in int.",
+)
+
+parser.add_argument(
+    "-t",
+    "--track_list",
+    help="The track list to evaluate. Pass in a list of coma separated ints.",
 )
 
 args = parser.parse_args()
 
-if __name__ != "__main__":
-    exit()
+track_list: list[int] = list(map(int, args.track_list.split(',')))
 
-tracks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 200, 0, 23, 345, 65, 44557, 23, 6, 879, 1]
+print(track_list)
+print(args.premiere_length)
