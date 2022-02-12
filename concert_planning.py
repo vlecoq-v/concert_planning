@@ -30,18 +30,24 @@ tracks = [int(track) for track in args.track_list.split(',')]
 premiere_length = int(args.premiere_length)
 
 if len(tracks) < 3:
-    logging.error("Argument track_list must contain at least 3 elements.")
-
+    logging.error("not enough tracks")
+    exit(0)
 if premiere_length <= 0:
-    logging.error("Argument premiere length must be greater or equal to 1.")
+    logging.error("show duration must be > 0")
+    exit(0)
 
 try:
     return_value: Union[list[int], None] = find_sum(premiere_length, tracks)
-    print(return_value)
     if return_value is None:
+        logging.error("No match found for this concert")
         exit(0)
     else:
+        print(f"""
+        We have a match for the show!
+        Track numbers {return_value} are fit with a length of: 
+        {tracks[return_value[0]]} + {tracks[return_value[1]]} + {tracks[return_value[2]]} = {premiere_length}
+        """)
         exit(1)
 except Exception as e:
-    print(e)
     logging.error(e)
+    exit(0)

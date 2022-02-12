@@ -21,7 +21,6 @@ def find_sum(target_sum: int, int_list: list[int]) -> Union[list[int], None]:
 
         while (second < third):
             current_sum = int_list[first] + int_list[second] + int_list[third]
-            print(f"iteration : {first}, {second}, {third}")
             if current_sum == target_sum:
                 return [first, second, third]
             elif current_sum < target_sum:
